@@ -40,21 +40,22 @@ export const navbar = (...items) => {
             .nav-list-item a .icon {
                 position: relative;
                 display: block;
-                transition: transform 0.5s;
-                color: var(--color-contrast);
+                transition: transform 0.5s, color 0.5s;
+                color: var(--color-nav-contrast);
                 font-size: 1.5em;
                 line-height: 75px;
                 text-align: center;
             }
             .nav-list-item[active="true"] a .icon {
                 transform: translateY(-32px);
+                color: var(--color-contrast);
             }
             .nav-list-item a .text {
                 position: absolute;
                 opacity: 0;
                 transform: translateY(20px);
                 transition: transform 0.5s, opacity 0.5s;
-                color: var(--color-contrast);
+                color: var(--color-nav-contrast);
                 font-size: 00.75em;
                 font-weight: 400;
                 letter-spacing: 0.05em;
