@@ -25,7 +25,7 @@ export const page = () => html`
             font-size: 3em;
             transition: transform 0.2s;
         }
-        .home-skills div i:hover {
+        .home-skills div:hover i {
             transform: rotate(10deg);
         }
         .home-skills div h5 {
@@ -35,7 +35,7 @@ export const page = () => html`
             position: absolute;
             bottom: 100px;
             left: 50vw;
-            transform: translateX(calc(-50% - 30px));
+            transform: translateX(calc(-50% - 70px));
         }
         .home-apps-arrow {
             position: relative;
@@ -62,31 +62,31 @@ export const page = () => html`
             <i class="devicon-unity-original"></i>
             <h5>Unity</h5>
         </div>
-        <div class="vertical">  
+        <div class="vertical">
             <i class="devicon-csharp-plain"></i>
             <h5>C#</h5>
         </div>
-        <div class="vertical">  
+        <div class="vertical">
             <i class="devicon-html5-plain"></i>
             <h5>HTML</h5>
         </div>
-        <div class="vertical">  
+        <div class="vertical">
             <i class="devicon-css3-plain"></i>
             <h5>CSS</h5>
         </div>
-        <div class="vertical">  
+        <div class="vertical">
             <i class="devicon-javascript-plain"></i>
             <h5>JavaScript</h5>
         </div>
-        <div class="vertical">  
+        <div class="vertical">
             <i class="devicon-nodejs-plain"></i>
             <h5>NodeJS</h5>
         </div>
-        <div class="vertical">  
+        <div class="vertical">
             <i class="devicon-python-plain"></i>
             <h5>Python</h5>
         </div>
-        <div class="vertical">  
+        <div class="vertical">
             <i class="devicon-tensorflow-original"></i>
             <h5>TensorFlow</h5>
         </div>

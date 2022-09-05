@@ -1,5 +1,11 @@
-export let activePage = 0
-const activate = i => () => {activePage = i; update()}
+export let activePage = parseInt(
+	sessionStorage.getItem('activeNavPageFor:' + window.location.pathname) ?? 0
+)
+const activate = i => () => {
+    activePage = i
+    sessionStorage.setItem('activeNavPageFor:'+window.location.pathname, i)
+    update()
+}
 export const navbar = (...items) => {
 	items = items.map((item, i) => item(activate(i)))
 	return html`
@@ -20,7 +26,7 @@ export const navbar = (...items) => {
                 justify-content: center;
                 align-items: center;
             }
-            
+
             .nav-list-item {
                 z-index: 1;
                 width: 70px;

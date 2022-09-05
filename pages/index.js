@@ -1,9 +1,12 @@
 import { page as indexPage } from '../components/index-home.js'
 import { page as appsPage } from '../components/index-apps.js'
+import { page as loginPage } from '../components/index-login.js'
 import { navbar, navItem, activePage } from '../components/navbar.js'
 
-flami(() => html`
-    <style>${`
+flami(
+	() => html`
+		<style>
+			${`
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Roboto:wght@300&display=swap');
         * {
             box-sizing: border-box;
@@ -32,6 +35,12 @@ flami(() => html`
         a { color: var(--color-contrast); }
         * { font-family: 'JetBrains Mono', monospace; }
         p { font-family: 'Roboto', sans-serif; }
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
         .horizontal {
             display: flex;
             align-items: center;
@@ -48,6 +57,7 @@ flami(() => html`
             transition: left 0.5s;
         }
         .main-container > div {
+            position: relative;
             height: 100vh;
             width: 100vw;
             flex-shrink: 0;
@@ -56,14 +66,17 @@ flami(() => html`
             padding-right: 50px;
             overflow-y: auto;
         }
-    `}</style>
-    <div class="main-container">
-        <div class="home-container">
-            ${indexPage()}
-        </div>
-        <div class="apps-container">
-            ${appsPage()}
-        </div>
-    </div>
-    ${navbar(navItem('Home', 'home-outline'), navItem('Apps', 'apps-outline'))}
-`)
+    `}
+		</style>
+		<div class="main-container">
+			<div class="home-container">${indexPage()}</div>
+			<div class="apps-container">${appsPage()}</div>
+			<div class="login-container">${loginPage()}</div>
+		</div>
+		${navbar(
+			navItem('Home', 'home-outline'),
+			navItem('Apps', 'apps-outline'),
+			navItem('Login', 'log-in-outline')
+		)}
+	`
+)
