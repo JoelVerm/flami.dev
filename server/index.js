@@ -1,9 +1,8 @@
 /**
- * 
  * @param {import('../main.js').RunningRequest} req 
  */
-export function flami(req) {
-    req.
+export async function flami(req) {
+    req.getPostData()
     return {
         foo: 12345
     }
