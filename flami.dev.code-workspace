@@ -1,11 +1,11 @@
 {
 	"folders": [
-		{
-			"path": "."
-		},
-		{
-			"path": "../flami.js"
-		}
-	],
+        {
+            "path": "."
+        },
+        {
+            "path": "../flami.js"
+        }
+    ],
     "settings": {}
 }

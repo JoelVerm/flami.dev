@@ -1,6 +1,5 @@
 import { page as indexPage } from '../components/index-home.js'
 import { page as appsPage } from '../components/index-apps.js'
-import { page as loginPage } from '../components/index-login.js'
 import { css } from '../components/main-css.js'
 import { navbar, navItem, activePage } from '../components/navbar.js'
 
@@ -32,12 +31,10 @@ flami(
 		<div class="main-container">
 			<div class="home-container">${indexPage()}</div>
 			<div class="apps-container">${appsPage()}</div>
-			<div class="login-container">${loginPage()}</div>
 		</div>
 		${navbar(
 			navItem('Home', 'home-outline'),
-			navItem('Apps', 'apps-outline'),
-			navItem('Login', 'log-in-outline')
+			navItem('Apps', 'apps-outline')
 		)}
 	`
 )

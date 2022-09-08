@@ -1,7 +1,9 @@
 import { Octokit, App } from 'octokit'
+import { Buffer } from 'buffer'
+import dotenv from 'dotenv'
+dotenv.config()
 
-const token = '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'
-const octokit = new Octokit({ auth: token })
+const octokit = new Octokit({ auth: process.env.GithubToken})
 
 const GithubConfig = {
 	owner: 'JoelVerm',
@@ -27,10 +29,30 @@ async function writeToGithub(content) {
 	})
 }
 async function readFromGithub() {
-	return octokit.rest.repos.getContent(GithubConfig)
+	const val = await octokit.rest.repos.getContent(GithubConfig)
+	return Buffer.from(val.data.content, 'base64').toString('utf8')
 }
 
 export const dataBase = JSON.parse(await readFromGithub())
+
+export function read(path) {
+	let d = dataBase
+	for (let p in path.split('.')) {
+		if (!(p in d)) return null
+		d = d[p]
+	}
+	return d
+}
+
+export function write(path, value) {
+	let d = dataBase
+	let sp = path.split('.')
+	for (let p of sp.slice(0, -1)) {
+		if (!(p in d)) d[p] = {}
+		d = d[p]
+	}
+	d[sp.at(-1)] = value
+}
 
 const saveInterval = 15
 async function saveTimer() {
