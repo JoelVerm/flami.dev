@@ -3,8 +3,8 @@ export let activePage = parseInt(
 )
 const activate = i => () => {
     activePage = i
-    sessionStorage.setItem('activeNavPageFor:'+window.location.pathname, i)
-    update()
+	sessionStorage.setItem('activeNavPageFor:' + window.location.pathname, i)
+	update()
 }
 export const navbar = (...items) => {
 	items = items.map((item, i) => item(activate(i)))
@@ -78,7 +78,7 @@ export const navbar = (...items) => {
                 top: 0px;
                 transition: transform 0.5s;
                 transform: translateX(calc(-50% + ${
-					70 * (-(items.length-1) / 2 + activePage)
+					70 * (-(items.length - 1) / 2 + activePage)
 				}px));
             }
             .nav-svg-bar path {
@@ -122,19 +122,20 @@ export const navbar = (...items) => {
 }
 
 export const navItem = (name, iconName) => {
-	return activate => active => html`
-        <li
-            class="nav-list-item"
-            id=${`menu-${name}`}
-            onclick=${activate}
-            active=${active}
-        >
-            <a href="#">
-                <span class="icon">
-                    <ion-icon name=${iconName}></ion-icon>
-                </span>
-                <span class="text">${name}</span>
-            </a>
-        </li>
-    `
+	return activate => active =>
+		html`
+			<li
+				class="nav-list-item"
+				id=${`menu-${name}`}
+				onclick=${activate}
+				active=${active}
+			>
+				<a href="#">
+					<span class="icon">
+						<ion-icon name=${iconName}></ion-icon>
+					</span>
+					<span class="text">${name}</span>
+				</a>
+			</li>
+		`
 }

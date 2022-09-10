@@ -1,5 +1,8 @@
 {
 	"esversion": 11,
 	"asi": true,
-	"module": true
+	"module": true,
+	"globals": {
+		"process": true
+	}
 }

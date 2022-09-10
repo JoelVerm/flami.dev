@@ -19,6 +19,7 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "dotenv": "^16.0.2",
-    "octokit": "^2.0.7"
+    "octokit": "^2.0.7",
+    "stripe": "^10.8.0"
   }
 }
