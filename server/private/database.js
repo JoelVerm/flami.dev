@@ -3,7 +3,7 @@ import { Buffer } from 'buffer'
 import dotenv from 'dotenv'
 dotenv.config()
 
-const octokit = new Octokit({ auth: process.env.GithubToken})
+const octokit = new Octokit({ auth: process.env.GithubToken })
 
 const GithubConfig = {
 	owner: 'JoelVerm',
@@ -33,8 +33,24 @@ async function readFromGithub() {
 	return Buffer.from(val.data.content, 'base64').toString('utf8')
 }
 
+const saveInterval = 15
+async function saveTimer() {
+	await writeToGithub(JSON.stringify(dataBase))
+	let date = new Date(),
+		year = date.getFullYear(),
+		month = date.getMonth(),
+		day = date.getDate(),
+		hour = date.getHours(),
+		minute = date.getMinutes()
+	let m = Math.ceil(minute / saveInterval) * saveInterval
+	let millis = new Date(year, month, day, hour, m).getMilliseconds()
+	setTimeout(saveTimer, millis)
+}
+setTimeout(saveTimer, saveInterval * 60 * 1000)
+
 export const dataBase = JSON.parse(await readFromGithub())
 
+//*legacy
 export function read(path) {
 	let d = dataBase
 	for (let p in path.split('.')) {
@@ -43,7 +59,6 @@ export function read(path) {
 	}
 	return d
 }
-
 export function write(path, value) {
 	let d = dataBase
 	let sp = path.split('.')
@@ -53,18 +68,57 @@ export function write(path, value) {
 	}
 	d[sp.at(-1)] = value
 }
+//*legacy
 
-const saveInterval = 15
-async function saveTimer() {
-	await writeToGithub(JSON.stringify(dataBase))
-    let date = new Date(),
-    year = date.getFullYear(),
-    month = date.getMonth(),
-    day = date.getDate(),
-    hour = date.getHours(),
-    minute = date.getMinutes()
-	let m = Math.ceil(minute / saveInterval) * saveInterval
-	let millis = new Date(year, month, day, hour, m).getMilliseconds()
-	setTimeout(saveTimer, millis)
+class DB {
+	/**
+	 * @param {Object.<string, any>} obj
+	 */
+	constructor(obj = null) {
+		this.obj = obj ?? dataBase
+	}
+	async select(path) {
+		let d = this.obj
+		for (let p in path.split(':')) {
+			if (!(p in d)) return null
+			d = d[p]
+		}
+		return new DB(d)
+	}
+	async where(condition) {
+		return new DB(
+			Object.fromEntries(
+				Object.entries(this.obj).filter(e => condition(e[1]))
+			)
+		)
+	}
+	async insert(key, value) {
+		this.obj[key] = {
+			...value,
+			key
+		}
+		return this
+	}
+	async update(key, value) {
+		this.obj[key] = {
+			...this.obj[key],
+			...value,
+			key
+		}
+		return this
+	}
+	async delete(key) {
+		delete this.obj[key]
+		return this
+	}
+	async expand() {
+		let obj = { ...this.obj }
+		for (let key in obj) {
+			if (typeof obj[key] === 'string') {
+				let o = new DB().select(this.obj[key])?.obj
+				if (o) obj[key] = o
+			}
+		}
+		return new DB(obj)
+	}
 }
-setTimeout(saveTimer, saveInterval*60*1000)
