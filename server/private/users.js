@@ -1,13 +1,13 @@
 import bcrypt from 'bcrypt'
 import crypto from 'crypto'
-import { dataBase, write } from './database.js'
+import { DB } from './database.js'
 
 const loggedInIps = {}
 
 export async function register(name, email, password) {
 	const hash = await bcrypt.hash(password, 10)
-	if (dataBase?.accounts?.[name]) return false
-	write(`accounts.${name}`, {
+	if (DB.has(`accounts:${name}`)) return false
+	DB.insert(`accounts.${name}`, {
 		name,
 		email,
 		password: hash
@@ -18,7 +18,7 @@ export async function login(name, password, ip) {
 	if (
 		await bcrypt.compare(
 			password,
-			dataBase?.accounts?.[name]?.password ?? ''
+			DB.select(`accounts:${name}:password`).end() ?? ''
 		)
 	) {
 		loggedInIps[ip] = crypto.randomBytes(32).toString('base64')

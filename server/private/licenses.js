@@ -1,5 +1,5 @@
 import crypto from 'crypto'
-import { dataBase, write } from './database.js'
+import { DB } from './database.js'
 
 /*
  * https://stripe.com/docs/payments/checkout/fulfill-orders
@@ -19,8 +19,7 @@ export function paySession(id) {
 
 export function register(username, numDevices) {
 	const key = crypto.randomBytes(32).toString('base64')
-	write(`licenses.${key}`, {
-		key,
+	DB.insert(`licenses:${key}`, {
 		username,
 		date: Date.now(),
 		numDevices,
@@ -29,13 +28,15 @@ export function register(username, numDevices) {
 }
 
 export function refresh(key, amount) {
-	dataBase.licenses[key].date = Date.now()
-	dataBase.licenses[key].devices = []
-	dataBase.licenses[key].amount = amount
+	DB.update(`licenses:${key}`, {
+		date: Date.now(),
+		devices: [],
+		amount: amount
+	})
 }
 
 export function isValid(key, deviceCode) {
-	const license = dataBase?.licenses?.[key]
+	const license = DB.select(`licenses:${key}`).end()
 	const testDate = new Date()
 	if (testDate.getMonth() > 7)
 		testDate.setFullYear(testDate.getFullYear() + 1)

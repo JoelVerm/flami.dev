@@ -1,6 +1,7 @@
 import { Octokit, App } from 'octokit'
 import { Buffer } from 'buffer'
 import dotenv from 'dotenv'
+import { get } from 'http'
 dotenv.config()
 
 const octokit = new Octokit({ auth: process.env.GithubToken })
@@ -48,77 +49,77 @@ async function saveTimer() {
 }
 setTimeout(saveTimer, saveInterval * 60 * 1000)
 
-export const dataBase = JSON.parse(await readFromGithub())
+const dataBase = JSON.parse(await readFromGithub())
 
-//*legacy
-export function read(path) {
-	let d = dataBase
-	for (let p in path.split('.')) {
-		if (!(p in d)) return null
-		d = d[p]
-	}
-	return d
-}
-export function write(path, value) {
-	let d = dataBase
-	let sp = path.split('.')
-	for (let p of sp.slice(0, -1)) {
-		if (!(p in d)) d[p] = {}
-		d = d[p]
-	}
-	d[sp.at(-1)] = value
-}
-//*legacy
-
-class DB {
+class DBInterface {
 	/**
 	 * @param {Object.<string, any>} obj
 	 */
-	constructor(obj = null) {
-		this.obj = obj ?? dataBase
+	constructor(obj) {
+		this.obj = obj
 	}
-	async select(path) {
-		let d = this.obj
-		for (let p in path.split(':')) {
-			if (!(p in d)) return null
-			d = d[p]
+	getObjAtPath(path, createNew = false) {
+		let o = this.obj
+		for (let p of path) {
+			if (!(p in o)) {
+				if (createNew) o[p] = { key: p }
+				else return {}
+			}
+			o = o[p]
 		}
-		return new DB(d)
+		return o
 	}
-	async where(condition) {
-		return new DB(
+	select(path) {
+		return new DBInterface(this.getObjAtPath(path.split(':')))
+	}
+	where(condition) {
+		return new DBInterface(
 			Object.fromEntries(
 				Object.entries(this.obj).filter(e => condition(e[1]))
 			)
 		)
 	}
-	async insert(key, value) {
-		this.obj[key] = {
+	insert(path, value) {
+		let pa = path.split(':')
+		let o = this.getObjAtPath(pa.slice(0, -1), true)
+		o[pa.at(-1)] = {
 			...value,
-			key
+			key: pa.at(-1)
 		}
 		return this
 	}
-	async update(key, value) {
-		this.obj[key] = {
-			...this.obj[key],
+	update(path, value) {
+		let pa = path.split(':')
+		let o = this.getObjAtPath(pa.slice(0, -1), true)
+		o[pa.at(-1)] = {
+			...o[pa.at(-1)],
 			...value,
-			key
+			key: pa.at(-1)
 		}
 		return this
 	}
-	async delete(key) {
+	delete(key) {
 		delete this.obj[key]
 		return this
 	}
-	async expand() {
+	expand() {
 		let obj = { ...this.obj }
 		for (let key in obj) {
-			if (typeof obj[key] === 'string') {
-				let o = new DB().select(this.obj[key])?.obj
+			if (typeof obj[key] === 'string' && obj[key].startsWith(':')) {
+				let o = new DBInterface(dataBase).select(
+					this.obj[key].substring(1)
+				)?.obj
 				if (o) obj[key] = o
 			}
 		}
-		return new DB(obj)
+		return new DBInterface(obj)
+	}
+	has(path) {
+		return Object.keys(this.select(path).end()).length > 0
+	}
+	end() {
+		return this.obj
 	}
 }
+
+export const DB = new DBInterface(dataBase)
