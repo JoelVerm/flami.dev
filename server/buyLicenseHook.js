@@ -8,13 +8,14 @@ import { paySession } from './private/licenses.js'
  * @param {import('../main.js').RunningRequest} req
  */
 export async function flami(req) {
-	let data = await req.getPostData()
+	let data = Object.entries(await req.getPostData())
+	let payload = data[0][0] + (data[0][1] ? ':' + data[0][1] : '')
 	const sig = req.req.headers['stripe-signature']
 
 	let event
 	try {
 		event = stripe.webhooks.constructEvent(
-			data,
+			payload,
 			sig,
 			process.env.StripeEndpointSecret
 		)

@@ -114,10 +114,14 @@ class DBInterface {
 		}
 		return new DBInterface(obj)
 	}
-	has(path) {
-		return Object.keys(this.select(path).end()).length > 0
+	has(path = '') {
+		return (
+			Object.keys(this.obj).length > 0 &&
+			Object.keys(this.select(path).obj).length > 0
+		)
 	}
 	end() {
+		if (Object.keys(this.obj).length <= 0) return null
 		return this.obj
 	}
 }

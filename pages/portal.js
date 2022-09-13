@@ -1,15 +1,14 @@
-import { page as indexPage } from '../components/index-home.js'
-import { page as appsPage } from '../components/index-apps.js'
+import { page as buyPage } from '../components/portal-buy-test.js'
 import { css } from '../components/main-css.js'
 import { navbar, navItem, activePage } from '../components/navbar.js'
 
 flami(
 	() => html`
-        <style>
-            ${css}
-        </style>
 		<style>
-		${`
+			${css}
+		</style>
+		<style>
+			${`
             .main-container {
                 position: relative;
                 top: 0; left: calc(${activePage}*-100vw);
@@ -29,12 +28,8 @@ flami(
         `}
 		</style>
 		<div class="main-container">
-			<div class="home-container">${indexPage()}</div>
-			<div class="apps-container">${appsPage()}</div>
+			<div class="home-container">${buyPage()}</div>
 		</div>
-		${navbar(
-			navItem('Home', 'home-outline'),
-			navItem('Apps', 'apps-outline')
-		)}
+		${navbar(navItem('Buy', 'wallet-outline'))}
 	`
 )
