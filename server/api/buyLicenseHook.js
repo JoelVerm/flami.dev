@@ -2,10 +2,10 @@ import dotenv from 'dotenv'
 dotenv.config()
 import Stripe from 'stripe'
 const stripe = new Stripe(process.env.StripeSecretKey)
-import { paySession } from './private/licenses.js'
+import { paySession } from '../private/licenses.js'
 
 /**
- * @param {import('../main.js').RunningRequest} req
+ * @param {import('../../main.js').RunningRequest} req
  */
 export async function flami(req) {
 	let data = Object.entries(await req.getPostData())

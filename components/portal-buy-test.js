@@ -10,7 +10,7 @@ export const page = () => html`
 			margin-bottom: 10px;
 		}
 	</style>
-	<form class="center" action="buyLicense" method="post">
+	<form class="center" action="api/buyGoodMarkLicense" method="post">
 		<div>
 			<label for="amount">Amount</label>
 			<input type="text" id="amount" name="amount" placeholder="Amount" />
