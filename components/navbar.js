@@ -1,8 +1,8 @@
 export let activePage = parseInt(
 	sessionStorage.getItem('activeNavPageFor:' + window.location.pathname) ?? 0
 )
-const activate = i => () => {
-    activePage = i
+export const activate = i => () => {
+	activePage = i
 	sessionStorage.setItem('activeNavPageFor:' + window.location.pathname, i)
 	update()
 }
@@ -25,6 +25,10 @@ export const navbar = (...items) => {
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                transition: bottom 0.5s ease;
+            }
+            .navigation:hover {
+                bottom: 10px;
             }
 
             .nav-list-item {
@@ -46,40 +50,43 @@ export const navbar = (...items) => {
             .nav-list-item a .icon {
                 position: relative;
                 display: block;
-                transition: transform 0.5s, color 0.5s;
+                transition: translate 0.5s, color 0.5s;
                 color: var(--color-nav-contrast);
                 font-size: 1.5em;
                 line-height: 75px;
                 text-align: center;
             }
             .nav-list-item[active="true"] a .icon {
-                transform: translateY(-32px);
+                translate: 0px -32px;
                 color: var(--color-contrast);
             }
             .nav-list-item a .text {
                 position: absolute;
                 opacity: 0;
-                transform: translateY(20px);
-                transition: transform 0.5s, opacity 0.5s;
+                translate: 0px 20px;
+                transition: translate 0.5s, opacity 0.5s;
                 color: var(--color-nav-contrast);
                 font-size: 00.75em;
                 font-weight: 400;
                 letter-spacing: 0.05em;
             }
-            .nav-list-item[active="true"] a .text {
+            .navigation:not(:hover) .nav-list-item[active="true"] a .text {
                 opacity: 1;
-                transform: translateY(10px);
+                translate: 0px 10px;
+            }
+            .navigation:hover .nav-list-item a .text {
+                opacity: 1;
             }
 
             .nav-svg-bar {
                 position: absolute;
-                height: 100%;
+                height: calc(100% + 10px);
                 left: 50%;
                 top: 0px;
-                transition: transform 0.5s;
-                transform: translateX(calc(-50% + ${
+                transition: translate 0.5s;
+                translate: calc(-50% + ${
 					70 * (-(items.length - 1) / 2 + activePage)
-				}px));
+				}px) 0px;
             }
             .nav-svg-bar path {
                 fill: url(#nav-svg-grad1);
