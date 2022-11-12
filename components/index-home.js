@@ -17,11 +17,11 @@ export const page = activate => html`
             background-color: #fff;
         }
     </style>
-    <div class="horizontal home-title-container">
+    <article class="horizontal home-title-container">
         <h1 class="home-title">Hi,<br>I'm FlamiDev</h1>
         <img class="home-profile-image" src="me.jpg"></img>
         <img class="home-profile-image flamivaar" src="flamivaar.png"></img>
-    </div>
+    </article>
     <h4>My name is Joël Vermeulen and I live in The Netherlands.</h4>
     <h4>I'm a game designer, web developer and all-round programmer.</h4>
     <br>

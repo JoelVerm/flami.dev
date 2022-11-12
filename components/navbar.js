@@ -102,7 +102,7 @@ export const navbar = (...items) => {
             }
         `}
 		</style>
-		<ul class="navigation">
+		<nav class="navigation">
 			${items.map((e, i) => e(i == activePage))}
 			<svg
 				class="nav-svg-bar"
@@ -125,25 +125,25 @@ export const navbar = (...items) => {
 					d="M 0 0 L 1450 0 C 1475 0 1475 20 1500 20 C 1525 20 1525 0 1550 0 L 3000 0 L 3000 50 L 0 50 L 0 0 Z"
 				></path>
 			</svg>
-		</ul>
+		</nav>
 	`
 }
 
 export const navItem = (name, iconName) => {
 	return activate => active =>
 		html`
-			<li
+			<div
 				class="nav-list-item"
 				id=${`menu-${name}`}
 				onclick=${activate}
 				active=${active}
 			>
-				<a href="#">
+				<a href=${`#${name}`}>
 					<span class="icon">
 						<ion-icon name=${iconName}></ion-icon>
 					</span>
 					<span class="text">${name}</span>
 				</a>
-			</li>
+			</div>
 		`
 }

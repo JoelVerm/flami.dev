@@ -27,9 +27,9 @@ flami(
             }
         `}
 		</style>
-		<div class="main-container">
-			<div class="home-container">${buyPage()}</div>
-		</div>
+		<main class="main-container">
+			<section class="home-container">${buyPage()}</section>
+		</main>
 		${navbar(navItem('Buy', 'wallet-outline'))}
 	`
 )

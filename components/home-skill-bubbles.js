@@ -137,7 +137,7 @@ export const page = () => {
             }
         `}
 		</style>
-		<div class="horizontal home-skills">
+		<article class="horizontal home-skills">
 			${dynamicSkillIcon('godot')}
 			${dynamicSkillIcon('unity', 'unity', false)}
 			${dynamicSkillIcon('csharp')} ${dynamicSkillIcon('html', 'html5')}
@@ -146,7 +146,7 @@ export const page = () => {
 			${dynamicSkillIcon('nodejs')} ${dynamicSkillIcon('php')}
 			${dynamicSkillIcon('mysql')} ${dynamicSkillIcon('python')}
 			${dynamicSkillIcon('tensorflow', 'tensorflow', false)}
-		</div>
+		</article>
 	`
 }
 
@@ -155,7 +155,7 @@ const dynamicSkillIcon = (
 	iconName = skillName,
 	plain = true
 ) => html`
-	<div
+	<figure
 		class=${`vertical home-skill-bubble ${skillName}`}
 		onclick=${() => clickedIcon(icons[skillName])}
 		data-showing-index=${icons[skillName].hasShowingIndex}
@@ -166,5 +166,5 @@ const dynamicSkillIcon = (
 		)}px; --data-showing-index: ${icons[skillName].hasShowingIndex};`}
 	>
 		<i class=${`devicon-${iconName}-${plain ? 'plain' : 'original'}`}></i>
-	</div>
+	</figure>
 `

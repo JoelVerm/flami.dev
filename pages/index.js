@@ -33,11 +33,11 @@ flami(
             }
         `}
 		</style>
-		<div class="main-container">
-			<div class="home-container">${indexPage(activate)}</div>
-			<div class="apps-container">${appsPage()}</div>
-			<div class="login-container">${loginPage()}</div>
-		</div>
+		<main class="main-container">
+			<section class="home-container">${indexPage(activate)}</section>
+			<section class="apps-container">${appsPage()}</section>
+			<section class="login-container">${loginPage()}</section>
+		</main>
 		${navbar(
 			navItem('Home', 'home-outline'),
 			navItem('Apps', 'apps-outline'),

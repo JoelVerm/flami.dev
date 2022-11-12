@@ -13,5 +13,5 @@ export const page = (title, text, image, display = false) => html`
         }
     `}
 	</style>
-	<div class="app-widget-container"></div>
+	<article class="app-widget-container"></article>
 `

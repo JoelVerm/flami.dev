@@ -55,10 +55,13 @@ flami(
 			</div>
 			<div><button type="submit">Register</button></div>
 			<div>
-				${window.hasOwnProperty('registerStatus') ? (
-				registerStatus === 'invalidPwd'
-					? 'Passwords do not match. Please try again...' : (registerStatus === 'invalidName' ? 'Invalid username. Please choose another one' : '')
-					) : ''}
+				${window.hasOwnProperty('registerStatus')
+					? registerStatus === 'invalidPwd'
+						? 'Passwords do not match. Please try again...'
+						: registerStatus === 'invalidName'
+						? 'Invalid username. Please choose another one'
+						: ''
+					: ''}
 			</div>
 		</form>
 	`
