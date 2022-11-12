@@ -92,7 +92,7 @@ export const page = () => {
                 position: relative;
                 flex-wrap: wrap;
             }
-            .home-skills > div {
+            .home-skills > figure {
                 width: 80px;
                 height: 80px;
                 position: relative;
@@ -105,23 +105,23 @@ export const page = () => {
                 background: linear-gradient(90deg, var(--color-main-1), var(--color-main-2)) fixed;
                 transition: margin 0.5s, top 0.5s ease, left 0.5s ease, width 0.5s ease, height 0.5s ease, font-size 0.5s ease;
             }
-            .home-skills > div i {
+            .home-skills > figure i {
                 font-size: 3em;
                 line-height: 70px;
                 transition: rotate 0.5s, line-height 0.5s ease;
             }
-            .home-skills > div:hover {
+            .home-skills > figure:hover {
                 margin-top: -5px;
             }
-            .home-skills > div:hover i {
+            .home-skills > figure:hover i {
                 rotate: 10deg;
             }
-            .home-skills > div .devicon-unity-original {
+            .home-skills > figure .devicon-unity-original {
                 padding-right: 8px;
                 transition: rotate 0.2s, line-height 0.5s ease, padding 0.5s ease;
             }
 
-            .home-skills > div:not([data-showing-index="-1"]) {
+            .home-skills > figure:not([data-showing-index="-1"]) {
                 top: calc(0px - var(--top-offset) + max(10vh, 50px) - 15px);
                 left: calc(100vw - var(--left-offset) + max(10vw, 50px) - 15px + 50px * var(--data-showing-index));
                 width: 50px;
@@ -129,10 +129,10 @@ export const page = () => {
                 margin: 20px;
                 font-size: 0.6em;
             }
-            .home-skills > div:not([data-showing-index="-1"]) i {
+            .home-skills > figure:not([data-showing-index="-1"]) i {
                 line-height: 40px;
             }
-            .home-skills > div:not([data-showing-index="-1"]) .devicon-unity-original {
+            .home-skills > figure:not([data-showing-index="-1"]) .devicon-unity-original {
                 padding-right: 4px;
             }
         `}

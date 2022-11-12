@@ -15,7 +15,7 @@ flami(
                 display: flex;
                 transition: left 0.5s;
             }
-            .main-container > div {
+            .main-container > section {
                 position: relative;
                 height: 100vh;
                 width: 100vw;

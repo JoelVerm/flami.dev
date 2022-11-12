@@ -19,7 +19,7 @@ flami(
                 width: 100vw;
                 transition: left 0.5s;
             }
-            .main-container > div {
+            .main-container > section {
                 position: relative;
                 height: 100vh;
                 width: 1000vw;
@@ -28,7 +28,7 @@ flami(
                 padding-right: calc(50px + 900vw);
                 overflow-y: auto;
             }
-            .main-container > div > .center {
+            .main-container > section > .center {
                 left: 50vw;
             }
         `}
