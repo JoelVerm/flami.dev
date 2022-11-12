@@ -2,8 +2,8 @@ import dotenv from 'dotenv'
 dotenv.config()
 import Stripe from 'stripe'
 const stripe = new Stripe(process.env.StripeSecretKey)
-import { startSession } from './private/licenses.js'
-import { isLoggedIn } from './private/users.js'
+import { startSession } from '../private/licenses.js'
+import { isLoggedIn } from '../private/users.js'
 
 /**
  * @param {import('../main.js').RunningRequest} req
@@ -15,6 +15,11 @@ export async function flami(req) {
 		return
 	}
 	let data = await req.getPostData()
+	data.amount = Number(data.amount)
+	if (isNaN(data.amount)) {
+		req.redirect('/portal')
+		return
+	}
 	const oneDay = 24 * 60 * 60 * 1000
 	const firstDate = new Date()
 	firstDate.setDate(1)

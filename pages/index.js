@@ -25,8 +25,11 @@ flami(
                 width: 1000vw;
                 padding-bottom: 80px;
                 padding-left: 50px;
-                padding-right: 50px;
+                padding-right: calc(50px + 900vw);
                 overflow-y: auto;
+            }
+            .main-container > div > .center {
+                left: 50vw;
             }
         `}
 		</style>

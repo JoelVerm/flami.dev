@@ -13,7 +13,13 @@ export const page = () => html`
 	<form class="center" action="api/buyGoodMarkLicense" method="post">
 		<div>
 			<label for="amount">Amount</label>
-			<input type="text" id="amount" name="amount" placeholder="Amount" />
+			<input
+				type="text"
+				id="amount"
+				name="amount"
+				placeholder="Amount"
+				pattern="[0-9]+"
+			/>
 		</div>
 		<div><button type="submit">Buy</button></div>
 	</form>

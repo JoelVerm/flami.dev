@@ -49,8 +49,8 @@ const icons = {
 		hasShowingIndex: -1
 	}
 }
-let iconsOffsetX = 0
-let iconsOffsetY = 0
+let iconsOffsetsX = []
+let iconsOffsetsY = []
 /**
  *
  * @param {icons} icon
@@ -60,17 +60,20 @@ function clickedIcon(icon) {
 	let i = 0
 	for (const name in icons) {
 		if (!icons[name].projects.includes(projectName)) continue
-		if (i === 0) {
+		if (!iconsOffsetsX[i] && !iconsOffsetsY[i]) {
 			let iconElement = document.querySelector(
 				`.home-skill-bubble.${name}`
 			)
-			let rect = iconElement.getBoundingClientRect()
-			iconsOffsetY = rect.top
-			iconsOffsetX = rect.left
-			console.log(rect)
+			var parentRect = iconElement.offsetParent.getBoundingClientRect()
+			iconsOffsetsY[i] =
+				parentRect.top +
+				iconElement.offsetTop +
+				(5 - (iconElement.offsetTop % 90))
+			iconsOffsetsX[i] = parentRect.left + iconElement.offsetLeft
 		}
 		icons[name].hasShowingIndex = i++
 	}
+	console.log(iconsOffsetsX, iconsOffsetsY)
 	if (i !== 0) activate(1)()
 }
 
@@ -78,6 +81,8 @@ export const page = () => {
 	if (activePage !== 1) {
 		for (const name in icons) {
 			icons[name].hasShowingIndex = -1
+			iconsOffsetsX = []
+			iconsOffsetsY = []
 		}
 	}
 	return html`
@@ -87,7 +92,7 @@ export const page = () => {
                 position: relative;
                 flex-wrap: wrap;
             }
-            .home-skills div {
+            .home-skills > div {
                 width: 80px;
                 height: 80px;
                 position: relative;
@@ -98,37 +103,36 @@ export const page = () => {
                 margin: 5px;
                 border-radius: 100000px;
                 background: linear-gradient(90deg, var(--color-main-1), var(--color-main-2)) fixed;
-                transition: margin 0.2s, top 0.5s ease, left 0.5s ease, width 0.5s ease, height 0.5s ease, font-size 0.5s ease;
+                transition: margin 0.5s, top 0.5s ease, left 0.5s ease, width 0.5s ease, height 0.5s ease, font-size 0.5s ease;
             }
-            .home-skills div i {
+            .home-skills > div i {
                 font-size: 3em;
                 line-height: 70px;
-                transition: rotate 0.2s, line-height 0.5s ease;
+                transition: rotate 0.5s, line-height 0.5s ease;
             }
-            .home-skills div:hover {
+            .home-skills > div:hover {
                 margin-top: -5px;
             }
-            .home-skills div:hover i {
+            .home-skills > div:hover i {
                 rotate: 10deg;
             }
-            .home-skills div .devicon-unity-original {
+            .home-skills > div .devicon-unity-original {
                 padding-right: 8px;
-                transition: padding 0.5s ease;
+                transition: rotate 0.2s, line-height 0.5s ease, padding 0.5s ease;
             }
 
-            .home-skills div:not([data-showing-index="-1"]) {
-                --top-offset: ${-iconsOffsetY}px;
-                --left-offset: ${-iconsOffsetX}px;
-                top: calc(var(--top-offset) + max(10vh, 50px));
-                left: calc(100vw + var(--left-offset) + max(10vw, 50px));
+            .home-skills > div:not([data-showing-index="-1"]) {
+                top: calc(0px - var(--top-offset) + max(10vh, 50px) - 15px);
+                left: calc(100vw - var(--left-offset) + max(10vw, 50px) - 15px + 50px * var(--data-showing-index));
                 width: 50px;
                 height: 50px;
+                margin: 20px;
                 font-size: 0.6em;
             }
-            .home-skills div:not([data-showing-index="-1"]) i {
+            .home-skills > div:not([data-showing-index="-1"]) i {
                 line-height: 40px;
             }
-            .home-skills div:not([data-showing-index="-1"]) .devicon-unity-original {
+            .home-skills > div:not([data-showing-index="-1"]) .devicon-unity-original {
                 padding-right: 4px;
             }
         `}
@@ -155,6 +159,11 @@ const dynamicSkillIcon = (
 		class=${`vertical home-skill-bubble ${skillName}`}
 		onclick=${() => clickedIcon(icons[skillName])}
 		data-showing-index=${icons[skillName].hasShowingIndex}
+		style=${`--top-offset: ${Math.floor(
+			iconsOffsetsY[icons[skillName].hasShowingIndex]
+		)}px; --left-offset: ${Math.floor(
+			iconsOffsetsX[icons[skillName].hasShowingIndex]
+		)}px; --data-showing-index: ${icons[skillName].hasShowingIndex};`}
 	>
 		<i class=${`devicon-${iconName}-${plain ? 'plain' : 'original'}`}></i>
 	</div>

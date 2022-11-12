@@ -22,6 +22,7 @@ export const navbar = (...items) => {
                 left: 0px;
                 width: 100vw;
                 height: 70px;
+                z-index: 10;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -32,7 +33,7 @@ export const navbar = (...items) => {
             }
 
             .nav-list-item {
-                z-index: 1;
+                z-index: 12;
                 width: 70px;
                 height: 70px;
                 list-style: none;
