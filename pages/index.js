@@ -5,12 +5,12 @@ import { css } from '../components/main-css.js'
 import { navbar, navItem, activePage, activate } from '../components/navbar.js'
 
 flami(
-	() => html`
-		<style>
-			${css}
-		</style>
-		<style>
-			${`
+    () => html`
+        <style>
+            ${css}
+        </style>
+        <style>
+            ${`
             .main-container {
                 position: relative;
                 top: 0; left: calc(${activePage}*-100vw);
@@ -32,16 +32,16 @@ flami(
                 left: 50vw;
             }
         `}
-		</style>
-		<main class="main-container">
-			<section class="home-container">${indexPage(activate)}</section>
-			<section class="apps-container">${appsPage()}</section>
-			<section class="login-container">${loginPage()}</section>
-		</main>
-		${navbar(
-			navItem('Home', 'home-outline'),
-			navItem('Apps', 'apps-outline'),
-			navItem('Login', 'log-in-outline')
-		)}
-	`
+        </style>
+        <main class="main-container">
+            <section class="home-container">${indexPage(activate)}</section>
+            <section class="apps-container">${appsPage()}</section>
+            <section class="login-container">${loginPage()}</section>
+        </main>
+        ${navbar(
+            navItem('Home', 'home-outline'),
+            navItem('Apps', 'apps-outline'),
+            navItem('Login', 'log-in-outline')
+        )}
+    `
 )

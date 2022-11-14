@@ -3,12 +3,12 @@ import { css } from '../components/main-css.js'
 import { navbar, navItem, activePage } from '../components/navbar.js'
 
 flami(
-	() => html`
-		<style>
-			${css}
-		</style>
-		<style>
-			${`
+    () => html`
+        <style>
+            ${css}
+        </style>
+        <style>
+            ${`
             .main-container {
                 position: relative;
                 top: 0; left: calc(${activePage}*-100vw);
@@ -26,10 +26,10 @@ flami(
                 overflow-y: auto;
             }
         `}
-		</style>
-		<main class="main-container">
-			<section class="home-container">${buyPage()}</section>
-		</main>
-		${navbar(navItem('Buy', 'wallet-outline'))}
-	`
+        </style>
+        <main class="main-container">
+            <section class="home-container">${buyPage()}</section>
+        </main>
+        ${navbar(navItem('Buy', 'wallet-outline'))}
+    `
 )

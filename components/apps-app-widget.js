@@ -1,6 +1,6 @@
 export const page = (title, text, image, display = false) => html`
-	<style>
-		${`
+    <style>
+        ${`
         .app-widget-container {
             position: absolute;
             top: max(10vh, 50px);
@@ -12,6 +12,6 @@ export const page = (title, text, image, display = false) => html`
             border-radius: 25px;
         }
     `}
-	</style>
-	<article class="app-widget-container"></article>
+    </style>
+    <article class="app-widget-container"></article>
 `

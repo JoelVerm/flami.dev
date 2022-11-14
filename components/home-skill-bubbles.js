@@ -4,50 +4,50 @@ import { activate, activePage } from './navbar.js'
  * @enum {{string: {projects: string[], hasShowingIndex: number}}}
  */
 const icons = {
-	godot: {
-		projects: ['Odweens'],
-		hasShowingIndex: -1
-	},
-	unity: {
-		projects: ['Odweens unity'],
-		hasShowingIndex: -1
-	},
-	csharp: {
-		projects: ['Odweens unity'],
-		hasShowingIndex: -1
-	},
-	html: {
-		projects: ['flami.dev'],
-		hasShowingIndex: -1
-	},
-	css: {
-		projects: ['flami.dev'],
-		hasShowingIndex: -1
-	},
-	js: {
-		projects: ['flami.dev'],
-		hasShowingIndex: -1
-	},
-	nodejs: {
-		projects: ['flami.dev'],
-		hasShowingIndex: -1
-	},
-	php: {
-		projects: [],
-		hasShowingIndex: -1
-	},
-	mysql: {
-		projects: [],
-		hasShowingIndex: -1
-	},
-	python: {
-		projects: ['chessJ'],
-		hasShowingIndex: -1
-	},
-	tensorflow: {
-		projects: ['chessJ'],
-		hasShowingIndex: -1
-	}
+    godot: {
+        projects: ['Odweens'],
+        hasShowingIndex: -1
+    },
+    unity: {
+        projects: ['Odweens unity'],
+        hasShowingIndex: -1
+    },
+    csharp: {
+        projects: ['Odweens unity'],
+        hasShowingIndex: -1
+    },
+    html: {
+        projects: ['flami.dev'],
+        hasShowingIndex: -1
+    },
+    css: {
+        projects: ['flami.dev'],
+        hasShowingIndex: -1
+    },
+    js: {
+        projects: ['flami.dev'],
+        hasShowingIndex: -1
+    },
+    nodejs: {
+        projects: ['flami.dev'],
+        hasShowingIndex: -1
+    },
+    php: {
+        projects: [],
+        hasShowingIndex: -1
+    },
+    mysql: {
+        projects: [],
+        hasShowingIndex: -1
+    },
+    python: {
+        projects: ['chessJ'],
+        hasShowingIndex: -1
+    },
+    tensorflow: {
+        projects: ['chessJ'],
+        hasShowingIndex: -1
+    }
 }
 let iconsOffsetsX = []
 let iconsOffsetsY = []
@@ -56,38 +56,38 @@ let iconsOffsetsY = []
  * @param {icons} icon
  */
 function clickedIcon(icon) {
-	let projectName = icon.projects[0]
-	let i = 0
-	for (const name in icons) {
-		if (!icons[name].projects.includes(projectName)) continue
-		if (!iconsOffsetsX[i] && !iconsOffsetsY[i]) {
-			let iconElement = document.querySelector(
-				`.home-skill-bubble.${name}`
-			)
-			var parentRect = iconElement.offsetParent.getBoundingClientRect()
-			iconsOffsetsY[i] =
-				parentRect.top +
-				iconElement.offsetTop +
-				(5 - (iconElement.offsetTop % 90))
-			iconsOffsetsX[i] = parentRect.left + iconElement.offsetLeft
-		}
-		icons[name].hasShowingIndex = i++
-	}
-	console.log(iconsOffsetsX, iconsOffsetsY)
-	if (i !== 0) activate(1)()
+    let projectName = icon.projects[0]
+    let i = 0
+    for (const name in icons) {
+        if (!icons[name].projects.includes(projectName)) continue
+        if (!iconsOffsetsX[i] && !iconsOffsetsY[i]) {
+            let iconElement = document.querySelector(
+                `.home-skill-bubble.${name}`
+            )
+            var parentRect = iconElement.offsetParent.getBoundingClientRect()
+            iconsOffsetsY[i] =
+                parentRect.top +
+                iconElement.offsetTop +
+                (5 - (iconElement.offsetTop % 90))
+            iconsOffsetsX[i] = parentRect.left + iconElement.offsetLeft
+        }
+        icons[name].hasShowingIndex = i++
+    }
+    console.log(iconsOffsetsX, iconsOffsetsY)
+    if (i !== 0) activate(1)()
 }
 
 export const page = () => {
-	if (activePage !== 1) {
-		for (const name in icons) {
-			icons[name].hasShowingIndex = -1
-			iconsOffsetsX = []
-			iconsOffsetsY = []
-		}
-	}
-	return html`
-		<style>
-			${`
+    if (activePage !== 1) {
+        for (const name in icons) {
+            icons[name].hasShowingIndex = -1
+            iconsOffsetsX = []
+            iconsOffsetsY = []
+        }
+    }
+    return html`
+        <style>
+            ${`
             .home-skills {
                 position: relative;
                 flex-wrap: wrap;
@@ -136,35 +136,35 @@ export const page = () => {
                 padding-right: 4px;
             }
         `}
-		</style>
-		<article class="horizontal home-skills">
-			${dynamicSkillIcon('godot')}
-			${dynamicSkillIcon('unity', 'unity', false)}
-			${dynamicSkillIcon('csharp')} ${dynamicSkillIcon('html', 'html5')}
-			${dynamicSkillIcon('css', 'css3')}
-			${dynamicSkillIcon('js', 'javascript')}
-			${dynamicSkillIcon('nodejs')} ${dynamicSkillIcon('php')}
-			${dynamicSkillIcon('mysql')} ${dynamicSkillIcon('python')}
-			${dynamicSkillIcon('tensorflow', 'tensorflow', false)}
-		</article>
-	`
+        </style>
+        <article class="horizontal home-skills">
+            ${dynamicSkillIcon('godot')}
+            ${dynamicSkillIcon('unity', 'unity', false)}
+            ${dynamicSkillIcon('csharp')} ${dynamicSkillIcon('html', 'html5')}
+            ${dynamicSkillIcon('css', 'css3')}
+            ${dynamicSkillIcon('js', 'javascript')}
+            ${dynamicSkillIcon('nodejs')} ${dynamicSkillIcon('php')}
+            ${dynamicSkillIcon('mysql')} ${dynamicSkillIcon('python')}
+            ${dynamicSkillIcon('tensorflow', 'tensorflow', false)}
+        </article>
+    `
 }
 
 const dynamicSkillIcon = (
-	skillName,
-	iconName = skillName,
-	plain = true
+    skillName,
+    iconName = skillName,
+    plain = true
 ) => html`
-	<figure
-		class=${`vertical home-skill-bubble ${skillName}`}
-		onclick=${() => clickedIcon(icons[skillName])}
-		data-showing-index=${icons[skillName].hasShowingIndex}
-		style=${`--top-offset: ${Math.floor(
-			iconsOffsetsY[icons[skillName].hasShowingIndex]
-		)}px; --left-offset: ${Math.floor(
-			iconsOffsetsX[icons[skillName].hasShowingIndex]
-		)}px; --data-showing-index: ${icons[skillName].hasShowingIndex};`}
-	>
-		<i class=${`devicon-${iconName}-${plain ? 'plain' : 'original'}`}></i>
-	</figure>
+    <figure
+        class=${`vertical home-skill-bubble ${skillName}`}
+        onclick=${() => clickedIcon(icons[skillName])}
+        data-showing-index=${icons[skillName].hasShowingIndex}
+        style=${`--top-offset: ${Math.floor(
+            iconsOffsetsY[icons[skillName].hasShowingIndex]
+        )}px; --left-offset: ${Math.floor(
+            iconsOffsetsX[icons[skillName].hasShowingIndex]
+        )}px; --data-showing-index: ${icons[skillName].hasShowingIndex};`}
+    >
+        <i class=${`devicon-${iconName}-${plain ? 'plain' : 'original'}`}></i>
+    </figure>
 `

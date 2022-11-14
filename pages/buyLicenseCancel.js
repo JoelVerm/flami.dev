@@ -1,7 +1,7 @@
 import { css } from '../components/main-css.js'
 
 flami(
-	() => html`
+    () => html`
 		<style>
 			${css}
 		</style>

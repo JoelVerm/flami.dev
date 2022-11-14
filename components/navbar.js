@@ -1,16 +1,16 @@
 export let activePage = parseInt(
-	sessionStorage.getItem('activeNavPageFor:' + window.location.pathname) ?? 0
+    sessionStorage.getItem('activeNavPageFor:' + window.location.pathname) ?? 0
 )
 export const activate = i => () => {
-	activePage = i
-	sessionStorage.setItem('activeNavPageFor:' + window.location.pathname, i)
-	update()
+    activePage = i
+    sessionStorage.setItem('activeNavPageFor:' + window.location.pathname, i)
+    update()
 }
 export const navbar = (...items) => {
-	items = items.map((item, i) => item(activate(i)))
-	return html`
-		<style>
-			${`
+    items = items.map((item, i) => item(activate(i)))
+    return html`
+        <style>
+            ${`
             .navigation,
             .navigation * {
                 margin: 0;
@@ -86,8 +86,8 @@ export const navbar = (...items) => {
                 top: 0px;
                 transition: translate 0.5s;
                 translate: calc(-50% + ${
-					70 * (-(items.length - 1) / 2 + activePage)
-				}px) 0px;
+                    70 * (-(items.length - 1) / 2 + activePage)
+                }px) 0px;
             }
             .nav-svg-bar path {
                 fill: url(#nav-svg-grad1);
@@ -101,49 +101,49 @@ export const navbar = (...items) => {
                 stop-opacity: 1;
             }
         `}
-		</style>
-		<nav class="navigation">
-			${items.map((e, i) => e(i == activePage))}
-			<svg
-				class="nav-svg-bar"
-				viewBox="0 0 3000 50"
-				xmlns="http://www.w3.org/2000/svg"
-			>
-				<defs>
-					<linearGradient
-						id="nav-svg-grad1"
-						x1="0%"
-						y1="0%"
-						x2="100%"
-						y2="0%"
-					>
-						<stop id="nav-svg-grad1-stop1" offset="40%" />
-						<stop id="nav-svg-grad1-stop2" offset="60%" />
-					</linearGradient>
-				</defs>
-				<path
-					d="M 0 0 L 1450 0 C 1475 0 1475 20 1500 20 C 1525 20 1525 0 1550 0 L 3000 0 L 3000 50 L 0 50 L 0 0 Z"
-				></path>
-			</svg>
-		</nav>
-	`
+        </style>
+        <nav class="navigation">
+            ${items.map((e, i) => e(i == activePage))}
+            <svg
+                class="nav-svg-bar"
+                viewBox="0 0 3000 50"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <defs>
+                    <linearGradient
+                        id="nav-svg-grad1"
+                        x1="0%"
+                        y1="0%"
+                        x2="100%"
+                        y2="0%"
+                    >
+                        <stop id="nav-svg-grad1-stop1" offset="40%" />
+                        <stop id="nav-svg-grad1-stop2" offset="60%" />
+                    </linearGradient>
+                </defs>
+                <path
+                    d="M 0 0 L 1450 0 C 1475 0 1475 20 1500 20 C 1525 20 1525 0 1550 0 L 3000 0 L 3000 50 L 0 50 L 0 0 Z"
+                ></path>
+            </svg>
+        </nav>
+    `
 }
 
 export const navItem = (name, iconName) => {
-	return activate => active =>
-		html`
-			<div
-				class="nav-list-item"
-				id=${`menu-${name}`}
-				onclick=${activate}
-				active=${active}
-			>
-				<a href=${`#${name}`}>
-					<span class="icon">
-						<ion-icon name=${iconName}></ion-icon>
-					</span>
-					<span class="text">${name}</span>
-				</a>
-			</div>
-		`
+    return activate => active =>
+        html`
+            <div
+                class="nav-list-item"
+                id=${`menu-${name}`}
+                onclick=${activate}
+                active=${active}
+            >
+                <a href=${`#${name}`}>
+                    <span class="icon">
+                        <ion-icon name=${iconName}></ion-icon>
+                    </span>
+                    <span class="text">${name}</span>
+                </a>
+            </div>
+        `
 }
