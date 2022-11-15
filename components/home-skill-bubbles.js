@@ -1,4 +1,5 @@
 import { activate, activePage } from './navbar.js'
+import { setDisplayedWidget } from './index-apps.js'
 
 /**
  * @enum {{string: {projects: string[], hasShowingIndex: number}}}
@@ -73,8 +74,10 @@ function clickedIcon(icon) {
         }
         icons[name].hasShowingIndex = i++
     }
-    console.log(iconsOffsetsX, iconsOffsetsY)
-    if (i !== 0) activate(1)()
+    if (i !== 0) {
+        setDisplayedWidget(projectName)
+        activate(1)()
+    }
 }
 
 export const page = () => {
