@@ -20,10 +20,19 @@ export function setDisplayedWidget(widget) {
         widgets[key].setDisplay(false)
     }
     widgets[widget].setDisplay(true)
+    update()
 }
 
 export const page = () => html`
+    <style>
+        .index-apps-container {
+            padding-bottom: calc(2 * max(10vh, 50px) - 70px);
+        }
+    </style>
     <h1 class="title">Apps</h1>
-    <p>Lorem ipsum</p>
-    ${Object.values(widgets).map(o => o.render())}
+    <div class="index-apps-container">
+        ${Object.entries(widgets).map(e =>
+            e[1].render(() => setDisplayedWidget(e[0]))
+        )}
+    </div>
 `

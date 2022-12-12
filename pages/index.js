@@ -2,7 +2,12 @@ import { page as indexPage } from '../components/index-home.js'
 import { page as appsPage } from '../components/index-apps.js'
 import { page as loginPage } from '../components/index-login.js'
 import { css } from '../components/main-css.js'
-import { navbar, navItem, activePage, activate } from '../components/navbar.js'
+import {
+    navbar,
+    navItem,
+    navScrollListener,
+    activate
+} from '../components/navbar.js'
 
 flami(
     () => html`
@@ -13,30 +18,29 @@ flami(
             ${`
             .main-container {
                 position: relative;
-                top: 0; left: calc(${activePage}*-100vw);
-                display: grid;
-                grid-template-columns: repeat(100,  100vw);
                 width: 100vw;
+                height: 100vh;
                 transition: left 0.5s;
+                overflow-y: scroll;
+                overflow-x: hidden;
+                padding-bottom: 100px;
             }
             .main-container > section {
                 position: relative;
-                height: 100vh;
-                width: 1000vw;
+                width: 100vw;
+                min-height: 100vh;
                 padding-bottom: 80px;
                 padding-left: 50px;
-                padding-right: calc(50px + 900vw);
-                overflow-y: auto;
-            }
-            .main-container > section > .center {
-                left: 50vw;
+                padding-right: 50px;
             }
         `}
         </style>
-        <main class="main-container">
-            <section class="home-container">${indexPage(activate)}</section>
-            <section class="apps-container">${appsPage()}</section>
-            <section class="login-container">${loginPage()}</section>
+        <main class="main-container vertical" onscroll=${navScrollListener}>
+            <section class="home-container nav-0">
+                ${indexPage(activate)}
+            </section>
+            <section class="apps-container nav-1">${appsPage()}</section>
+            <section class="login-container nav-2">${loginPage()}</section>
         </main>
         ${navbar(
             navItem('Home', 'home-outline'),

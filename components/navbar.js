@@ -1,10 +1,41 @@
 export let activePage = parseInt(
     sessionStorage.getItem('activeNavPageFor:' + window.location.pathname) ?? 0
 )
-export const activate = i => () => {
-    activePage = i
-    sessionStorage.setItem('activeNavPageFor:' + window.location.pathname, i)
-    update()
+document.addEventListener('load', () => {
+    document
+        .querySelector(`.nav-${activePage}`)
+        .scrollIntoView({ behavior: 'smooth', block: 'center' })
+})
+export const activate =
+    i =>
+    (scroll = true) => {
+        activePage = i
+        sessionStorage.setItem(
+            'activeNavPageFor:' + window.location.pathname,
+            i
+        )
+        if (scroll)
+            document
+                .querySelector(`.nav-${i}`)
+                .scrollIntoView({ behavior: 'smooth', block: 'center' })
+        update()
+    }
+const scrollMargin = window.innerHeight * 0.2
+export const navScrollListener = ev => {
+    let i = 0
+    for (const el of ev.target.children) {
+        var rect = el.getBoundingClientRect()
+        var elemTop = rect.top
+        var elemBottom = rect.bottom
+        var isVisible =
+            elemTop >= -scrollMargin &&
+            elemBottom <= window.innerHeight + scrollMargin
+        if (isVisible) {
+            activate(i)(false)
+            return
+        }
+        i++
+    }
 }
 export const navbar = (...items) => {
     items = items.map((item, i) => item(activate(i)))

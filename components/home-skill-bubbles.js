@@ -75,8 +75,8 @@ function clickedIcon(icon) {
         icons[name].hasShowingIndex = i++
     }
     if (i !== 0) {
-        setDisplayedWidget(projectName)
         activate(1)()
+        setDisplayedWidget(projectName)
     }
 }
 
@@ -125,8 +125,8 @@ export const page = () => {
             }
 
             .home-skills > figure:not([data-showing-index="-1"]) {
-                top: calc(0px - var(--top-offset) + max(10vh, 50px) - 15px);
-                left: calc(100vw - var(--left-offset) + max(10vw, 50px) - 15px + 50px * var(--data-showing-index));
+                top: calc(0px - var(--top-offset) + 65px - 15px);
+                left: calc(100vw - var(--left-offset) + 45px + 50px * var(--data-showing-index));
                 width: 50px;
                 height: 50px;
                 margin: 20px;
