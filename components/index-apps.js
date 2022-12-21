@@ -15,24 +15,58 @@ const widgets = {
     'flami.dev': new AppWidget('Flami.dev', `This website!`),
     chessJ: new AppWidget('ChessJ', `A simple chess AI`, ['chessJ.png'])
 }
-export function setDisplayedWidget(widget) {
-    for (let key in widgets) {
-        widgets[key].setDisplay(false)
-    }
-    widgets[widget].setDisplay(true)
-    update()
-}
 
 export const page = () => html`
-    <style>
-        .index-apps-container {
-            padding-bottom: calc(2 * max(10vh, 50px) - 70px);
-        }
-    </style>
+    <style></style>
     <h1 class="title">Apps</h1>
     <div class="index-apps-container">
-        ${Object.entries(widgets).map(e =>
-            e[1].render(() => setDisplayedWidget(e[0]))
-        )}
+        ${Object.values(widgets).map(e => e.render())}
+    </div>
+`
+
+export const imageWidget = () => html`
+    <style>
+        .apps-image-widget {
+            height: calc(50vh - 100px);
+        }
+        .apps-image-widget > img {
+            position: absolute;
+            border-radius: 5vw;
+            width: 10vw;
+            height: 10vw;
+            z-index: 1;
+            object-fit: cover;
+            transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s,
+                z-index 0s 0.5s;
+        }
+        .apps-image-widget > img:nth-child(1) {
+            left: 5vw;
+            top: 5vw;
+        }
+        .apps-image-widget > img:nth-child(2) {
+            left: 20vw;
+            top: 5vw;
+        }
+        .apps-image-widget > img:nth-child(3) {
+            left: 35vw;
+            top: 5vw;
+        }
+        .apps-image-widget > img:nth-child(4) {
+            left: 50vw;
+            top: 5vw;
+        }
+        .apps-image-widget > img:hover,
+        .apps-image-widget > img:focus {
+            width: 90vw;
+            height: calc(50vh - 20px - 5vw);
+            left: 5vw;
+            top: 5vw;
+            z-index: 5;
+            transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s,
+                z-index 0s 0s;
+        }
+    </style>
+    <div class="apps-image-widget">
+        ${Object.entries(widgets).map(e => e[1].renderPreviewImage())}
     </div>
 `

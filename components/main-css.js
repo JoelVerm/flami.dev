@@ -18,9 +18,9 @@ export const css = `
         margin: 0;
         --color-main-1: #F6757A;
         --color-main-2: #FEAE35;
-        --color-contrast: #EAD4AA;
-        --color-bg: #181425;
-        --color-nav-contrast: var(--color-bg);
+        --color-contrast: #181425;
+        --color-bg: #ead4aa;
+        --color-nav-contrast: var(--color-contrast);
         background-color: var(--color-bg);
         color: var(--color-contrast);
     }

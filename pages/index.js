@@ -1,13 +1,8 @@
 import { page as indexPage } from '../components/index-home.js'
-import { page as appsPage } from '../components/index-apps.js'
+import { page as appsPage, imageWidget } from '../components/index-apps.js'
 import { page as loginPage } from '../components/index-login.js'
 import { css } from '../components/main-css.js'
-import {
-    navbar,
-    navItem,
-    navScrollListener,
-    activate
-} from '../components/navbar.js'
+import { navbar, navItem, navScrollListener } from '../components/navbar.js'
 
 flami(
     () => html`
@@ -28,17 +23,18 @@ flami(
             .main-container > section {
                 position: relative;
                 width: 100vw;
-                min-height: 100vh;
                 padding-bottom: 80px;
                 padding-left: 50px;
                 padding-right: 50px;
             }
+            .login-container {
+                min-height: 100vh;
+            }
         `}
         </style>
-        <main class="main-container vertical" onscroll=${navScrollListener}>
-            <section class="home-container nav-0">
-                ${indexPage(activate)}
-            </section>
+        <main class="main-container" onscroll=${navScrollListener}>
+            <section class="home-container">${imageWidget()}</section>
+            <section class="home-container nav-0">${indexPage()}</section>
             <section class="apps-container nav-1">${appsPage()}</section>
             <section class="login-container nav-2">${loginPage()}</section>
         </main>

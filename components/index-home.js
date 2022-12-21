@@ -1,6 +1,6 @@
 import { page as skillBubbles } from './home-skill-bubbles.js'
 
-export const page = activate => html`
+export const page = () => html`
     <style>
         .home-title-container {
             flex-wrap: wrap;
@@ -9,7 +9,7 @@ export const page = activate => html`
             font-size: 3em;
         }
         .home-profile-image {
-            border-radius: 10000px;
+            border-radius: 1000vw;
             margin-left: 50px;
             height: 8em;
         }
@@ -26,7 +26,7 @@ export const page = activate => html`
     <h4>I'm a game designer, web developer and all-round programmer.</h4>
     <br>
     <h2>My skills</h2>
-    ${skillBubbles(activate)}
+    ${skillBubbles()}
     <p>
         <h2>Contact</h2>
         You can find me on twitter: <a href="http://twitter.com/flamidev">@flamidev</a><br>

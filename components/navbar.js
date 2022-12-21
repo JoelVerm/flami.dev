@@ -20,21 +20,25 @@ export const activate =
                 .scrollIntoView({ behavior: 'smooth', block: 'center' })
         update()
     }
-const scrollMargin = window.innerHeight * 0.2
 export const navScrollListener = ev => {
     let i = 0
     for (const el of ev.target.children) {
+        i = Number(
+            Array.from(el.classList)
+                .find(e => e.startsWith('nav-'))
+                ?.slice(-1)
+        )
+        if (Number.isNaN(i)) continue
         var rect = el.getBoundingClientRect()
         var elemTop = rect.top
         var elemBottom = rect.bottom
         var isVisible =
-            elemTop >= -scrollMargin &&
-            elemBottom <= window.innerHeight + scrollMargin
+            elemTop <= window.innerHeight / 2 &&
+            elemBottom >= window.innerHeight / 2
         if (isVisible) {
             activate(i)(false)
             return
         }
-        i++
     }
 }
 export const navbar = (...items) => {
