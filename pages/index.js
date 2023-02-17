@@ -1,5 +1,5 @@
 import { page as indexPage } from '../components/index-home.js'
-import { page as appsPage, imageWidget } from '../components/index-apps.js'
+import { page as appsPage } from '../components/index-apps.js'
 import { page as loginPage } from '../components/index-login.js'
 import { css } from '../components/main-css.js'
 import { navbar, navItem } from '../components/navbar.js'
@@ -34,7 +34,6 @@ flami(
         `}
         </style>
         <main class="main-container">
-            <section class="home-container">${imageWidget()}</section>
             <section class="home-container" id="nav-0">${indexPage()}</section>
             <section class="apps-container" id="nav-1">${appsPage()}</section>
             <section class="login-container" id="nav-2">${loginPage()}</section>

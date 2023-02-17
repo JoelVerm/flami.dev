@@ -60,6 +60,21 @@ export const navbar = (...items) => html`
         .navigation:hover .nav-list-item a .text {
             opacity: 1;
         }
+        body:not(:has(.main-container section:target))
+            .nav-list-item:first-of-type
+            a
+            .icon {
+            translate: 0px -32px;
+            color: var(--color-contrast);
+        }
+        body:not(:has(.main-container section:target))
+            .navigation:not(:hover)
+            .nav-list-item:first-of-type
+            a
+            .text {
+            opacity: 1;
+            translate: 0px 10px;
+        }
 
         .nav-svg-bar {
             position: absolute;
