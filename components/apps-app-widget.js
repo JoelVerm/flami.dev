@@ -19,39 +19,33 @@ export class AppWidget {
             <style>
                 ${`
                     .app-widget-container {
-                        background: linear-gradient(90deg, var(--color-main-1), var(--color-main-2)) fixed;
-                        border-radius: 25px;
                         padding: 0px;
-                        overflow: hidden;
-                        color: var(--color-nav-contrast);
                         display: flex;
                         flex-direction: row;
-                        width: 100%;
-                        height: 4rem;
                         margin: 0.5rem;
-                        transition: top 0.5s, left 0.5s, width 0.5s, height 0.5s;
                     }
-                    .app-widget-container {
-                        height: calc(100vh - 2 * max(10vh, 50px) - 70px);
+                    .app-widget-container:nth-of-type(2n) {
+                        flex-direction: row-reverse;
                     }
                     .app-widget-container h1 {
                         height: 3rem;
                         font-size: 2.3rem;
                     }
-                    .app-widget-container > div {
-                        width: 50%;
-                        height: 100%;
-                    }
                     .app-widget-container .app-widget-text-box {
-                        padding: 10px;
-                        padding-top: 15px;
+                        padding: 0px 30px;
+                        flex: 3;
+                    }
+                    .app-widget-container:nth-of-type(2n + 1) .app-widget-text-box {
+                        text-align: right;
                     }
                     .app-widget-image-box {
                         overflow-y: auto;
+                        flex: 2;
                     }
                     .app-widget-container .app-widget-image-box img {
                         width: 100%;
                         object-fit: cover;
+                        border-radius: 10px;
                     }
                 `}
             </style>
