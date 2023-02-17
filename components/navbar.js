@@ -47,6 +47,15 @@ export const navbar = (...items) => html`
             line-height: 75px;
             text-align: center;
         }
+        .nav-list-item a .icon-circle {
+            width: 45px;
+            height: 45px;
+            display: block;
+            position: absolute;
+            background: var(--color-main-1);
+            translate: -10px 10px;
+            border-radius: 100vmax;
+        }
         .nav-list-item a .text {
             position: absolute;
             opacity: 0;
@@ -156,6 +165,7 @@ export const navItem = (name, iconName) => i =>
         <div class="nav-list-item" id=${`menu-${name}`}>
             <a href=${`#nav-${i}`}>
                 <span class="icon">
+                    <span class="icon-circle"></span>
                     <ion-icon name=${iconName}></ion-icon>
                 </span>
                 <span class="text">${name}</span>
