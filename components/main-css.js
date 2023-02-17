@@ -16,8 +16,8 @@ export const css = `
     body {
         overflow: hidden;
         margin: 0;
-        --color-main-1: #F6757A;
-        --color-main-2: #FEAE35;
+        --color-main-1: #e4a672;
+        --color-main-2: #e4a672;
         --color-contrast: #181425;
         --color-bg: #ead4aa;
         --color-nav-contrast: var(--color-contrast);
