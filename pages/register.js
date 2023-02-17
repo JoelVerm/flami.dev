@@ -1,4 +1,5 @@
 import { css } from '../components/main-css.js'
+import { page as cursor } from '../components/cursor.js'
 
 flami(
     () => html`
@@ -16,6 +17,7 @@ flami(
                 margin-bottom: 10px;
             }
         </style>
+        ${cursor()}
         <form class="center" action="register" method="post">
             <div>
                 <label for="register-name">Name</label>

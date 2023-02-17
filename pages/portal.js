@@ -1,6 +1,7 @@
 import { page as buyPage } from '../components/portal-buy-test.js'
 import { css } from '../components/main-css.js'
 import { navbar, navItem, activePage } from '../components/navbar.js'
+import { page as cursor } from '../components/cursor.js'
 
 flami(
     () => html`
@@ -27,6 +28,7 @@ flami(
             }
         `}
         </style>
+        ${cursor()}
         <main class="main-container">
             <section class="home-container">${buyPage()}</section>
         </main>

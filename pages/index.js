@@ -3,6 +3,7 @@ import { page as appsPage } from '../components/index-apps.js'
 import { page as loginPage } from '../components/index-login.js'
 import { css } from '../components/main-css.js'
 import { navbar, navItem } from '../components/navbar.js'
+import { page as cursor } from '../components/cursor.js'
 
 flami(
     () => html`
@@ -33,6 +34,7 @@ flami(
             }
         `}
         </style>
+        ${cursor()}
         <main class="main-container">
             <section class="home-container" id="nav-0">${indexPage()}</section>
             <section class="apps-container" id="nav-1">${appsPage()}</section>
