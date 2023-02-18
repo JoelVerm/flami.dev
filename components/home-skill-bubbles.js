@@ -14,6 +14,21 @@ export const page = () => html`
             background: linear-gradient(90deg, var(--color-main-1), var(--color-main-2)) fixed;
             transition: margin 0.2s;
         }
+        .home-skills > figure:nth-of-type(1n) {
+            animation: var(--blob1);
+        }
+        .home-skills > figure:nth-of-type(2n) {
+            animation: var(--blob2);
+        }
+        .home-skills > figure:nth-of-type(3n) {
+            animation: var(--blob3);
+        }
+        .home-skills > figure:nth-of-type(4n) {
+            animation: var(--blob4);
+        }
+        .home-skills > figure:nth-of-type(5n) {
+            animation: var(--blob5);
+        }
         .home-skills > figure i {
             font-size: 3em;
             line-height: 70px;
