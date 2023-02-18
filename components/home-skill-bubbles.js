@@ -47,13 +47,9 @@ export const page = () => html`
     `}
     </style>
     <article class="horizontal home-skills">
-        ${dynamicSkillIcon('godot')}
-        ${dynamicSkillIcon('unity', 'unity', false)}
-        ${dynamicSkillIcon('csharp')} ${dynamicSkillIcon('html', 'html5')}
+        ${dynamicSkillIcon('godot')} ${dynamicSkillIcon('html', 'html5')}
         ${dynamicSkillIcon('css', 'css3')}
-        ${dynamicSkillIcon('js', 'javascript')} ${dynamicSkillIcon('nodejs')}
-        ${dynamicSkillIcon('php')} ${dynamicSkillIcon('mysql')}
-        ${dynamicSkillIcon('python')}
+        ${dynamicSkillIcon('js', 'javascript')} ${dynamicSkillIcon('python')}
         ${dynamicSkillIcon('tensorflow', 'tensorflow', false)}
     </article>
 `
