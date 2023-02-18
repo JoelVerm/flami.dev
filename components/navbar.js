@@ -55,6 +55,7 @@ export const navbar = (...items) => html`
             background: var(--color-main-1);
             translate: -10px 10px;
             border-radius: 100vmax;
+            animation: var(--blob3);
         }
         .nav-list-item a .text {
             position: absolute;
