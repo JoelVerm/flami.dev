@@ -7,12 +7,6 @@ const widgets = {
     Odweens: new AppWidget('Odweens', `A game made with Godot.`, [
         'MangroveTemp.webp'
     ]),
-    'Odweens unity': new AppWidget(
-        'Odweens',
-        `The first version of the game, made with Unity.`,
-        ['MangroveTemp.webp']
-    ),
-    'flami.dev': new AppWidget('Flami.dev', `This website!`),
     chessJ: new AppWidget('ChessJ', `A simple chess AI`, ['chessJ.png'])
 }
 
