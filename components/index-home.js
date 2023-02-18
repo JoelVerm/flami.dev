@@ -12,6 +12,7 @@ export const page = () => html`
             border-radius: 1000vw;
             margin-left: 50px;
             height: 8em;
+            animation: var(--blob4);
         }
         .flamivaar {
             background-color: #fff;
