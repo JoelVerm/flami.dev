@@ -23,11 +23,11 @@ export const css = `
         --color-nav-contrast: var(--color-contrast);
         background-color: var(--color-bg);
         color: var(--color-contrast);
-        --blob1: blob1 20s ease-in-out infinite;
-        --blob2: blob2 20s ease-in-out infinite;
-        --blob3: blob3 20s ease-in-out infinite;
-        --blob4: blob4 20s ease-in-out infinite;
-        --blob5: blob5 20s ease-in-out infinite;
+        --blob1: blob1 20s cubic-bezier(.2,0,.8,1) infinite;
+        --blob2: blob2 20s cubic-bezier(.2,0,.8,1) infinite;
+        --blob3: blob3 20s cubic-bezier(.2,0,.8,1) infinite;
+        --blob4: blob4 20s cubic-bezier(.2,0,.8,1) infinite;
+        --blob5: blob5 20s cubic-bezier(.2,0,.8,1) infinite;
     }
     a { color: var(--color-contrast); }
     * { font-family: 'JetBrains Mono', monospace; }
@@ -50,153 +50,168 @@ export const css = `
 
     @keyframes blob1 {
         0%, 100% {
-            border-radius: 67% 70% 62% 61% / 56% 69% 73% 67%;
+            border-radius: 59% 41% 39% 61% / 44% 44% 56% 56%;
+        }
+        10% {
+            border-radius: 60% 40% 38% 62% / 52% 49% 51% 48%;
         }
         20% {
-            border-radius: 57% 63% 67% 62% / 68% 69% 70% 69%;
+            border-radius: 41% 59% 58% 42% / 39% 35% 65% 61%;
         }
         30% {
-            border-radius: 55% 66% 68% 69% / 65% 56% 69% 69%;
+            border-radius: 52% 48% 61% 39% / 55% 46% 54% 45%;
         }
         40% {
-            border-radius: 72% 68% 69% 63% / 56% 69% 70% 61%;
+            border-radius: 59% 41% 46% 54% / 48% 48% 52% 52%;
         }
         50% {
-            border-radius: 63% 55% 56% 64% / 73% 64% 67% 67%;
+            border-radius: 37% 63% 46% 54% / 47% 62% 38% 53%;
         }
         60% {
-            border-radius: 72% 68% 70% 55% / 60% 66% 64% 55%;
+            border-radius: 35% 65% 58% 42% / 59% 49% 51% 41%;
         }
         70% {
-            border-radius: 59% 66% 70% 74% / 63% 61% 72% 69%;
+            border-radius: 59% 41% 48% 52% / 63% 52% 48% 37%;
         }
         80% {
-            border-radius: 73% 59% 61% 65% / 61% 74% 69% 74%;
+            border-radius: 58% 42% 56% 44% / 39% 40% 60% 61%;
         }
         90% {
-            border-radius: 72% 68% 67% 55% / 58% 57% 58% 72%;
+            border-radius: 47% 53% 48% 52% / 58% 56% 44% 42%;
         }
     }
 
     @keyframes blob2 {
         0%, 100% {
-            border-radius: 56% 57% 69% 59% / 72% 56% 64% 73%;
+            border-radius: 52% 48% 59% 41% / 41% 61% 39% 59%;
+        }
+        10% {
+            border-radius: 63% 37% 47% 53% / 45% 60% 40% 55%;
         }
         20% {
-            border-radius: 63% 62% 62% 62% / 64% 69% 56% 64%;
+            border-radius: 53% 47% 60% 40% / 44% 40% 60% 56%;
         }
         30% {
-            border-radius: 68% 56% 59% 64% / 59% 58% 67% 60%;
+            border-radius: 50% 50% 57% 43% / 55% 55% 45% 45%;
         }
         40% {
-            border-radius: 72% 72% 65% 67% / 63% 71% 72% 70%;
+            border-radius: 55% 45% 35% 65% / 37% 35% 65% 63%;
         }
         50% {
-            border-radius: 58% 74% 63% 65% / 56% 57% 64% 60%;
+            border-radius: 63% 37% 41% 59% / 61% 50% 50% 39%;
         }
         60% {
-            border-radius: 67% 73% 61% 73% / 73% 64% 56% 71%;
+            border-radius: 41% 59% 64% 36% / 36% 58% 42% 64%;
         }
         70% {
-            border-radius: 59% 71% 59% 69% / 74% 62% 62% 59%;
+            border-radius: 51% 49% 46% 54% / 55% 54% 46% 45%;
         }
         80% {
-            border-radius: 62% 69% 64% 69% / 55% 61% 71% 65%;
+            border-radius: 59% 41% 59% 41% / 58% 40% 60% 42%;
         }
         90% {
-            border-radius: 56% 70% 58% 67% / 64% 57% 60% 73%;
+            border-radius: 46% 54% 57% 43% / 56% 47% 53% 44%;
         }
     }
 
 
     @keyframes blob3 {
         0%, 100% {
-            border-radius: 68% 63% 74% 69% / 74% 63% 67% 67%;
+            border-radius: 46% 54% 57% 43% / 39% 60% 40% 61%;
+        }
+        10% {
+            border-radius: 37% 63% 41% 59% / 35% 60% 40% 65%;
         }
         20% {
-            border-radius: 68% 59% 63% 56% / 73% 74% 61% 59%;
+            border-radius: 38% 62% 61% 39% / 60% 59% 41% 40%;
         }
         30% {
-            border-radius: 59% 59% 57% 59% / 69% 62% 55% 63%;
+            border-radius: 44% 56% 38% 62% / 54% 39% 61% 46%;
         }
         40% {
-            border-radius: 72% 65% 74% 55% / 57% 60% 65% 74%;
+            border-radius: 39% 61% 37% 63% / 36% 55% 45% 64%;
         }
         50% {
-            border-radius: 62% 58% 56% 72% / 70% 55% 63% 57%;
+            border-radius: 48% 52% 41% 59% / 54% 46% 54% 46%;
         }
         60% {
-            border-radius: 69% 59% 69% 60% / 71% 70% 55% 57%;
+            border-radius: 41% 59% 48% 52% / 53% 47% 53% 47%;
         }
         70% {
-            border-radius: 64% 59% 65% 69% / 74% 71% 62% 63%;
+            border-radius: 59% 41% 54% 46% / 39% 43% 57% 61%;
         }
         80% {
-            border-radius: 71% 63% 67% 61% / 73% 67% 71% 64%;
+            border-radius: 41% 59% 39% 61% / 61% 45% 55% 39%;
         }
         90% {
-            border-radius: 56% 62% 57% 58% / 66% 59% 65% 70%;
+            border-radius: 45% 55% 57% 43% / 38% 42% 58% 62%;
         }
     }
 
 
     @keyframes blob4 {
         0%, 100% {
-            border-radius: 61% 61% 65% 57% / 66% 59% 65% 70%;
+            border-radius: 39% 61% 50% 50% / 64% 62% 38% 36%;
+        }
+        10% {
+            border-radius: 41% 59% 35% 65% / 54% 61% 39% 46%;
         }
         20% {
-            border-radius: 64% 72% 55% 74% / 65% 73% 61% 61%;
+            border-radius: 59% 41% 45% 55% / 41% 35% 65% 59%;
         }
         30% {
-            border-radius: 67% 57% 56% 56% / 69% 55% 60% 60%;
+            border-radius: 59% 41% 53% 47% / 46% 54% 46% 54%;
         }
         40% {
-            border-radius: 56% 58% 57% 69% / 56% 74% 57% 57%;
+            border-radius: 47% 53% 35% 65% / 62% 38% 62% 38%;
         }
         50% {
-            border-radius: 63% 65% 65% 66% / 64% 58% 70% 58%;
+            border-radius: 62% 38% 36% 64% / 57% 42% 58% 43%;
         }
         60% {
-            border-radius: 69% 74% 60% 70% / 71% 62% 70% 70%;
+            border-radius: 55% 45% 50% 50% / 54% 44% 56% 46%;
         }
         70% {
-            border-radius: 72% 55% 65% 62% / 61% 71% 65% 60%;
+            border-radius: 40% 60% 49% 51% / 59% 39% 61% 41%;
         }
         80% {
-            border-radius: 66% 61% 56% 64% / 68% 60% 73% 67%;
+            border-radius: 61% 39% 49% 51% / 38% 43% 57% 62%;
         }
         90% {
-            border-radius: 58% 73% 55% 60% / 65% 60% 58% 62%;
+            border-radius: 60% 40% 63% 37% / 46% 39% 61% 54%;
         }
     }
 
     @keyframes blob5 {
         0%, 100% {
-            border-radius: 60% 57% 74% 59% / 57% 64% 74% 71%;
+            border-radius: 64% 36% 40% 60% / 44% 58% 42% 56%;
+        }
+        10% {
+            border-radius: 35% 65% 41% 59% / 60% 41% 59% 40%;
         }
         20% {
-            border-radius: 68% 60% 67% 70% / 67% 66% 68% 56%;
+            border-radius: 60% 40% 63% 37% / 43% 42% 58% 57%;
         }
         30% {
-            border-radius: 56% 59% 69% 57% / 60% 57% 72% 62%;
+            border-radius: 55% 45% 45% 55% / 49% 63% 37% 51%;
         }
         40% {
-            border-radius: 61% 62% 71% 59% / 55% 56% 74% 61%;
+            border-radius: 61% 39% 48% 52% / 58% 64% 36% 42%;
         }
         50% {
-            border-radius: 61% 61% 72% 62% / 68% 70% 68% 74%;
+            border-radius: 45% 55% 57% 43% / 52% 57% 43% 48%;
         }
         60% {
-            border-radius: 66% 66% 69% 65% / 67% 58% 61% 73%;
+            border-radius: 55% 45% 49% 51% / 45% 56% 44% 55%;
         }
         70% {
-            border-radius: 74% 59% 60% 59% / 66% 72% 74% 55%;
+            border-radius: 35% 65% 44% 56% / 37% 57% 43% 63%;
         }
         80% {
-            border-radius: 55% 71% 61% 60% / 64% 60% 61% 64%;
+            border-radius: 40% 60% 63% 37% / 63% 39% 61% 37%;
         }
         90% {
-            border-radius: 60% 70% 68% 63% / 68% 72% 57% 69%;
+            border-radius: 41% 59% 43% 57% / 52% 48% 52% 48%;
         }
     }
 `
